@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public abstract class Pen {
+public class Pen {
 	private String name;
 	private String brand;
 	private PenType type;
