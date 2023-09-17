@@ -1,6 +1,8 @@
 package Pen.strategies;
 
-public class SmoothWritingStrategy implements WritingStrategy{
+import Pen.interfaces.WritingStrategy;
+
+public class SmoothWritingStrategy implements WritingStrategy {
 
 	@Override
 	public void write() {

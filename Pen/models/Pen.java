@@ -1,12 +1,14 @@
 package Pen.models;
-import Pen.strategies.WritingStrategy;
+import Pen.interfaces.WritingStrategy;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@Builder
 public class Pen {
 	private String name;
 	private String brand;

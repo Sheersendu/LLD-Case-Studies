@@ -2,16 +2,14 @@ package Pen.models;
 
 import Pen.interfaces.RefillPen;
 import Pen.strategies.SmoothWritingStrategy;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
 
-@Getter
-@Setter
-public class GelPen extends Pen implements RefillPen {
+@Builder
+public class BallPen extends Pen implements RefillPen {
 	private Refill refill;
-	public GelPen(String name, String brand, double price, Refill refill) {
-		super(name, brand, PenType.GEL, price, new SmoothWritingStrategy());
-		this.refill = refill;
+	public BallPen(String name, String brand, double price, Refill refill) {
+		super(name, brand, PenType.BALL, price, new SmoothWritingStrategy());
+		this. refill = refill;
 	}
 
 	@Override

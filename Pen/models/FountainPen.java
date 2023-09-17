@@ -1,7 +1,6 @@
 package Pen.models;
 
 import Pen.strategies.SmoothWritingStrategy;
-import Pen.strategies.WritingStrategy;
 
 public class FountainPen extends Pen{
 	public FountainPen(String name, String brand, double price) {
