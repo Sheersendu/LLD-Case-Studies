@@ -63,8 +63,7 @@ rectangle Game {
 classDiagram
 class Game {
     - board : Board
-    - humanPlayer : Player
-    - botPlayer : Player
+    - players : Player[]
     + register(Player)
     + startGame(Player, Player, int row, int column)
     + makeMove(Player, int x, int y) : Board
@@ -107,3 +106,7 @@ HumanPlayer --|> Player : implements
 Bot --|> Player : implements
 Cell "1" --* "1" Symbol : Contains
 ```
+
+### Notes:
+* SRP, OCP violation in Bot class as playing behaviour changes based on difficulty levels : Strategy Pattern
+* Photo in HumanPlayer is a problem as memory issue + every game we play these metadata needs to be repeated : Flyweight
