@@ -1,14 +1,14 @@
 package Pen.models;
 import Pen.interfaces.WritingStrategy;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 public class Pen {
 	private String name;
 	private String brand;

@@ -4,9 +4,11 @@ import Pen.interfaces.RefillPen;
 import Pen.strategies.SmoothWritingStrategy;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
+@SuperBuilder
 public class GelPen extends Pen implements RefillPen {
 	private Refill refill;
 	public GelPen(String name, String brand, double price, Refill refill) {
