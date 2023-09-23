@@ -77,6 +77,10 @@ classDiagram
         - type : PenType
         - price : Double
         - writingStrategy : WritingStrategy
+        + String getName()
+        + String getBrand()
+        + String getType()
+        + Double getPrice()
         + void write()
     }
     class PenType {
