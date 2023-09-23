@@ -65,13 +65,13 @@ class Game {
     - board : Board
     - players : Player[]
     + register(Player)
-    + startGame(Player, Player, int row, int column)
-    + makeMove(Player, int x, int y) : Board
-    + checkWinner(Board, Player, Player) : Player
+    +startGame(Player, Player, int row, int column) void
+    +makeMove(Player, int x, int y) Board
+    +checkWinner(Board, Player, Player) Player
 }
 class Board {
     - cells : Cell[][] 
-    + Board(int, int) : Board
+    +Board(int, int)  Board
 }
 class Cell {
     - x : int
@@ -80,33 +80,69 @@ class Cell {
 }
 class Player {
     <<abstract>>
-    + symbol : Symbol
-    + play(Board) : Cell
+    - symbol : Symbol
+    +play(Board)* Cell
 }
-class HumanPlayer {
+class User {
     - name : String
     - email : String
     - photo : byte[]
-    + play(Board) : Cell
+}
+class HumanPlayer {
+    - user : User
+    - playingStrategy : PlayingStrategy 
+    +play(Board) Cell
 }
 class Bot {
-    - difficultyLevel : int
-    + play(Board) : Cell
+    - difficultyLevel : Level
+    - playingStrategy : PlayingStrategy
+    +play(Board) Cell
 }
 class Symbol {
     <<enumerator>>
     X
     O
 }
+class Level {
+    <<enumerator>>
+    EASY
+    MEDIUM
+    HARD
+}
+class PlayingStrategy {
+    <<interface>>
+    +play(Board) Cell
+}
+class RandomPlayingStrategy {
+    +play(Board) Cell
+}
+class MinMaxPlayingStrategy {
+    +play(Board) Cell
+}
+class AlphaBetaPlayingStrategy {
+    +play(Board) Cell
+}
+
 Game "1" --* "1" Board : Comprises of
 Board "1" --* "M" Cell : Consists of
 Player "1" --o "1" Symbol : Contains
-Game "1" --* "1" Player : has
+Game "1" --* "M" Player : has
 HumanPlayer --|> Player : implements
+HumanPlayer "M" --o "1" User : has a 
 Bot --|> Player : implements
 Cell "1" --* "1" Symbol : Contains
+PlayingStrategy  <|-- RandomPlayingStrategy
+PlayingStrategy  <|-- MinMaxPlayingStrategy
+PlayingStrategy  <|-- AlphaBetaPlayingStrategy
+Bot "M" --o "1" PlayingStrategy
+Bot "1" --o "1" Level : has a 
 ```
 
 ### Notes:
-* SRP, OCP violation in Bot class as playing behaviour changes based on difficulty levels : Strategy Pattern
-* Photo in HumanPlayer is a problem as memory issue + every game we play these metadata needs to be repeated : Flyweight
+* SRP, OCP violation in Bot class as playing behaviour changes based on difficulty levels : `Strategy Pattern` : Here it will be PlayingStrategy
+* Photo in HumanPlayer is a problem as memory issue + every game we play these metadata needs to be repeated : `Flyweight`. Here it will be User class
+* Use Factory for object creation nas client needs to know about subclasses(HumanPlayer, BotPlayer) for object creation(Check test class)
+* Now if we can create board of any dimensions, so the winning rules will vary accordingly, hence winningStrategy
+
+### Side Assignment:
+* What if we want to undo our move? Store all the moves
