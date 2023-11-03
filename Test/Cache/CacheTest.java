@@ -20,7 +20,7 @@ public class CacheTest {
 	public void TestInMemoryCacheForCreation(){
 		cache.create("Test", "TestString");
 		String actual = cache.get("Test");
-		Assert.assertEquals("If put is done correctly must return correct value",cache.get(actual), "TestString");
+		Assert.assertEquals("If put is done correctly must return correct value", "TestString", actual);
 	}
 
 	@Test(expected = RuntimeException.class)

@@ -3,7 +3,6 @@ package Cache;
 import Cache.Interfaces.Cache;
 import Cache.eviction.EvictionStrategy;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -29,7 +28,7 @@ public class InMemoryCache<KEY, VALUE> implements Cache<KEY, VALUE> {
 //			// Instead of throwing exception we should remove item : Eviction!
 //		}
 
-		if (capacity >= values.size()) {
+		if (capacity <= values.size()) {
 			KEY keyToRemove = evictionStrategy.evict();
 			delete(keyToRemove);
 		}
